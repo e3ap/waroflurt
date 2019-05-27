@@ -1,0 +1,12 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+    <h1>Save Delete {{ Save.name }}</h1>
+    <form method="post">
+    {% csrf_token %}
+    Are you sure you want to delete {{ Save.name }}
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock content %}

@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+      <form style="border: 1px solid grey; margin: 10% 0%; padding: 10% 5%" method="post">
+          <h2>Sign up</h2>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="btn btn-primary" type="submit">Sign up</button>
+         <span>Have an account?<a href="{% url 'login' %}" style="color:orange">Sign in here</a></span>
+
+      </form>
+
+{% endblock content %}

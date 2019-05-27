@@ -1,0 +1,17 @@
+
+
+<section class="navbar">
+    <ul>
+        <li><a href="{% url 'games_list' %}">Games</a></li>
+        <li><a href="">About Us</a></li>
+        <li><a href="">Contacts</a></li>
+    </ul>
+
+    {% if request.user.is_authenticated %}
+
+        <div class="profile"><a href="{% url 'user_detail' user.pk %}">Profile</a></div>
+
+    {% endif %}
+
+
+</section>

@@ -1,0 +1,17 @@
+{% extends 'index.html' %}
+
+{% block content %}
+<div>
+    <h1>{{ save.current_chapter.ch_title }}</h1>
+    <div>{{ save.current_chapter.body }}</div>
+</div>
+    <form method="POST">
+        {% csrf_token %}
+        <ul>
+            {% for chapter in next_chapters %}
+            <li><input type="radio" name= "new_chapter" value="{{ chapter.id }}">{{ chapter.ch_title }}</li>
+            {% endfor %}
+        <button type="submit">Submit</button>
+        </ul>
+    </form>
+{% endblock content %}

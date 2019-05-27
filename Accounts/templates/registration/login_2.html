@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Sofia" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="navbar">
+            <ul>
+                <li><a href="">Games</a></li>
+                <li><a href="">About Us</a></li>
+                <li><a href="">Contcats</a></li>
+            </ul>
+            <div class="login"><a href="">Login</a></div>
+        </section>
+        <section class="page">
+            <article>
+                <p>You can play as Guest, but registering enables you to save your progress.</p>
+            </article>
+            <article>
+                <form method="post">
+                    {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit">Login</button>
+                    <br>
+                    <span>Do not have an account?<a href="{% url 'signup' %}" style="color:orange">Sign up here</a></span>
+                </form>
+            </article>
+        </section>
+    </div>
+
+</body>
+</html>

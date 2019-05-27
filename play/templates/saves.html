@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+
+{% block content %}
+    <ul class="list">
+        {% for save in saves %}
+{#            <li><a href="{% url 'gameplay'  %}/save{{ save.id }}/?chapter={{ save.current_chapter }}">{{ save.name }}</a></li>#}
+            <li>
+                <a href="{% url 'gameplay' save.id %}">{{ save.name }}</a>
+                <div><button><a href="{% url 'delete' save.id %}">Delete {{ save.name }}</a></button></div>
+                <div><button><a href="{% url 'update' save.id %}">Update {{ save.name }}</a></button></div>
+            </li>
+
+        {% endfor %}
+    </ul>
+        {% if saves.count < 3 and not request.user.is_superuser %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="Submit">Start New</button>
+            </form>
+        {% elif request.user.is_superuser %}
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="Submit">Start New</button>
+            </form>
+        {% endif %}
+{% endblock content %}

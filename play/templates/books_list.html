@@ -1,0 +1,29 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<ul class="list">
+    {% for book in books_list %}
+        {% if request.user.is_authenticated %}
+            <li><a href="{% url 'saves_list' book.id %}">{{ book.name }}</a></li>
+            {% if request.user.is_superuser %}
+            <button><a href="{% url 'bookdelete' book.id %}">DELETE</a></button>
+            <button><a href="{% url 'bookupdate' book.id %}">Edit</a></button>
+            {% endif %}
+        {% else %}
+             <li><a href="{% url 'login' %}">{{ book.name }}</a></li>
+        {% endif %}
+    {% endfor %}
+
+    {% if request.user.is_superuser %}
+        <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Create Book
+        </button>
+        </form>
+
+    {% endif %}
+</ul>
+
+{% endblock content %}

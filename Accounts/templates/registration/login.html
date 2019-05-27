@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<section class="page">
+    <article>
+        <p>Logging in, allows us to save your progress</p>
+    </article>
+    <article>
+        <form method="post">
+            {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit">Login</button>
+            <br>
+            <span>Do not have an account?<a href="{% url 'signup' %}" style="color:orange">Sign up here</a></span>
+        </form>
+    </article>
+</section>
+
+{% endblock content %}
